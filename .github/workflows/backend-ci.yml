@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'station_management/gestion-station/**'
+      - 'gestion-station/**'
 
 
 jobs:
