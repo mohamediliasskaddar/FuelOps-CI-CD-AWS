@@ -7,6 +7,9 @@ on:
     paths:
       - 'gestion-station/**'
 
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   build:
@@ -26,9 +29,20 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Build
+      - name: Build JAR
         run: mvn clean package -DskipTests
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
         run: |
-          docker build -t backend-app .
+          docker build -t ghcr.io/${{ github.repository_owner }}/backend-app:${{ github.sha }}  .
+
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/backend-app:${{ github.sha }}
