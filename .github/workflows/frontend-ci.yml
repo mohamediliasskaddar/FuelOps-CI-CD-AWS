@@ -29,3 +29,7 @@ jobs:
 
       - name: Build Angular
         run: npm run build
+
+      - name: Build Docker image
+        run: |
+          docker build -t frontend-app ./gestion-station-web
