@@ -13,7 +13,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: station_management/gestion-station-web
+        working-directory: gestion-station-web
 
     steps:
       - name: Checkout
