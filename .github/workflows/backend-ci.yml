@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'gestion-station/**'
+#    paths:
+#      - 'gestion-station/**'
 
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: station_management/gestion-station
+        working-directory: gestion-station
 
     steps:
       - name: Checkout
