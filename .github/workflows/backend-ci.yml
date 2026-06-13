@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-#    paths:
-#      - 'gestion-station/**'
+    paths:
+      - 'gestion-station/**'
 
 
 jobs:
