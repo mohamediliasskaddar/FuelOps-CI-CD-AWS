@@ -1,9 +1,29 @@
-# Frontend
-gestion-station-web/node_modules/
-gestion-station-web/dist/
-gestion-station-web/.vscode/
+# Dependencies
+node_modules
 
-# Global
+# Build output
+dist
+dist-ssr
+
+# Angular cache
+.angular
+.cache
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode
+.idea
+
+# OS files
 .DS_Store
 Thumbs.db
-*.log
+
+# Git
+.git
+.gitignore
+
+# Tests coverage
+coverage

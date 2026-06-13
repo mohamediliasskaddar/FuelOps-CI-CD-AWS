@@ -1,8 +1,8 @@
-version: '3.9'
 services:
-  db: # srv 1
+
+  postgres:
     image: postgres:15
-    container_name: station_postgres_db
+    restart: always
     environment:
       POSTGRES_DB: station_db
       POSTGRES_USER: postgres
@@ -11,19 +11,31 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-  backend: # srv 2
+    networks:
+      - station-net
+
+  backend:
     build: ./gestion-station
-    container_name: station_sb_backend
+    restart: always
     ports:
       - "8080:8080"
     depends_on:
-      - db
-  frontend: # srv 3
+      - postgres
+    networks:
+      - station-net
+
+  frontend:
     build: ./gestion-station-web
-    container_name: station_angular_frontend
+    restart: always
     ports:
       - "4200:80"
     depends_on:
       - backend
+    networks:
+      - station-net
+
 volumes:
   pgdata:
+
+networks:
+  station-net:
