@@ -1,0 +1,10 @@
+# Backend
+gestion-station/target/
+gestion-station/.idea/
+gestion-station/*.iml
+
+
+# Global
+.DS_Store
+Thumbs.db
+*.log

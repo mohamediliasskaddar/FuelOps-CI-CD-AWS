@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2>Liste des Carburants</h2>
+  <button class="btn btn-primary mb-2" routerLink="/carburants/add">Ajouter un carburant</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let carburant of carburants">
+      <td>{{ carburant.id }}</td>
+      <td>{{ carburant.nom }}</td>
+      <td>{{ carburant.description }}</td>
+      <td *ngIf="carburant.id">
+        <button class="btn btn-warning btn-sm" (click)="editCarburant(carburant.id)">Modifier</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteCarburant(carburant.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

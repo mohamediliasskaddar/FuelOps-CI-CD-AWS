@@ -1,0 +1,10 @@
+<h2>{{ isEdit ? 'Modifier' : 'Ajouter' }} une Station</h2>
+<form [formGroup]="stationForm" (ngSubmit)="onSubmit()">
+  <label>Nom:</label>
+  <input formControlName="nom" />
+  <label>Ville:</label>
+  <input formControlName="ville" />
+  <label>Adresse:</label>
+  <input formControlName="adresse" />
+  <button type="submit">{{ isEdit ? 'Modifier' : 'Ajouter' }}</button>
+</form>

@@ -1,0 +1,25 @@
+<h2>Liste des Stations</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Ville</th>
+      <th>Adresse</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let station of stations">
+      <td>{{ station.id }}</td>
+      <td>{{ station.nom }}</td>
+      <td>{{ station.ville }}</td>
+      <td>{{ station.adresse }}</td>
+      <td *ngIf="station.id">
+        <button [routerLink]="['/stations/edit', station.id]">Modifier</button>
+        <button (click)="deleteStation(station.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button [routerLink]="['/stations/add']">Ajouter Station</button>

@@ -1,0 +1,49 @@
+<h2>{{ isEdit ? 'Modifier' : 'Ajouter' }} Prix</h2>
+
+<form [formGroup]="histoForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="station">Station:</label>
+    <select id="station" formControlName="stationId">
+      <option value="" disabled selected>-- Sélectionner une station --</option>
+      <option *ngFor="let station of stations" [value]="station.id">
+        {{ station.nom }} - {{ station.ville }}
+      </option>
+    </select>
+    <div *ngIf="histoForm.get('stationId')?.invalid && histoForm.get('stationId')?.touched" style="color:red">
+      La station est requise.
+    </div>
+  </div>
+
+  <div>
+    <label for="carburant">Carburant:</label>
+    <select id="carburant" formControlName="carburantId">
+      <option value="" disabled selected>-- Sélectionner un carburant --</option>
+      <option *ngFor="let carburant of carburants" [value]="carburant.id">
+        {{ carburant.nom }}
+      </option>
+    </select>
+    <div *ngIf="histoForm.get('carburantId')?.invalid && histoForm.get('carburantId')?.touched" style="color:red">
+      Le carburant est requis.
+    </div>
+  </div>
+
+  <div>
+    <label for="date">Date:</label>
+    <input type="date" id="date" formControlName="date">
+    <div *ngIf="histoForm.get('date')?.invalid && histoForm.get('date')?.touched" style="color:red">
+      La date est requise.
+    </div>
+  </div>
+
+  <div>
+    <label for="prix">Prix:</label>
+    <input type="number" id="prix" formControlName="prix" step="0.01">
+    <div *ngIf="histoForm.get('prix')?.invalid && histoForm.get('prix')?.touched" style="color:red">
+      Le prix est requis.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="histoForm.invalid">{{ isEdit ? 'Modifier' : 'Ajouter' }}</button>
+  <button type="button" (click)="router.navigate(['/histo'])">Annuler</button>
+</form>

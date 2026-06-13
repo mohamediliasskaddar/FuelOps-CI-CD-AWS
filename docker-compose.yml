@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  db: # srv 1
+    image: postgres:15
+    container_name: station_postgres_db
+    environment:
+      POSTGRES_DB: station_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  backend: # srv 2
+    build: ./gestion-station
+    container_name: station_sb_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  frontend: # srv 3
+    build: ./gestion-station-web
+    container_name: station_angular_frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+volumes:
+  pgdata:

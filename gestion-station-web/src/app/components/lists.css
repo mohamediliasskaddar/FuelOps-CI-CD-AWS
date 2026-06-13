@@ -1,0 +1,129 @@
+/* ========= Global Container ========= */
+.container, table {
+  width: 90%;
+  margin: 30px auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ========= Headings ========= */
+h2 {
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ========= Buttons ========= */
+button,
+.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #0056b3;
+}
+
+button.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+button.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+}
+
+button.btn-danger:hover {
+  background-color: #a71d2a;
+}
+
+button.btn-primary {
+  background-color: #007bff;
+}
+
+/* ========= Tables ========= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #007bff;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #eef4ff;
+}
+
+/* ========= Action Buttons Column ========= */
+td button {
+  margin-right: 5px;
+}
+
+/* ========= Filter Inputs (Histo List) ========= */
+input[type="text"],
+input[type="search"],
+input[placeholder="Ville"],
+input[placeholder="Station"] {
+  padding: 6px 10px;
+  margin: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+button + input,
+input + button {
+  margin-left: 5px;
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 768px) {
+  table {
+    font-size: 13px;
+  }
+
+  button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

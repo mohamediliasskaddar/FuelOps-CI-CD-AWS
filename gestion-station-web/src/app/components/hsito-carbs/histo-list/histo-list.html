@@ -1,0 +1,37 @@
+<h2>Historique des prix</h2>
+<input #city placeholder="Ville" />
+<button (click)="filterCity(city.value)">Filtrer par Ville</button>
+
+<input #station placeholder="Station" />
+<button (click)="filterStation(station.value)">Filtrer par Station</button>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Station</th>
+      <th>Ville</th>  
+      <th>Carburant</th>
+      <th>Date</th>
+      <th>Prix</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+   <tr *ngFor="let histo of filteredHistos.length ? filteredHistos : histos">
+      <td>{{ histo.id }}</td>
+      
+      <td >{{ histo.stationNom }}</td>
+      <td >{{ histo.stationVille }}</td>
+      <td >{{ histo.carburantNom }}</td>
+      <td>{{ histo.date }}</td>
+      <td>{{ histo.prix }}</td>
+      <td>
+        <button [routerLink]="['/histo/edit', histo.id]">Modifier</button>
+        <button (click)="deleteHisto(histo.id!)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button [routerLink]="['/histo/add']">Ajouter Prix</button>

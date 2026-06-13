@@ -1,0 +1,15 @@
+.welcome-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.welcome-container h1 {
+  color: #007bff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.welcome-container p {
+  font-size: 1.1rem;
+  color: #333;
+}

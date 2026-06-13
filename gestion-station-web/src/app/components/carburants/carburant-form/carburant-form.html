@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Modifier Carburant' : 'Ajouter Carburant' }}</h2>
+
+  <form [formGroup]="carburantForm" (ngSubmit)="save()">
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <input type="text" class="form-control" formControlName="nom">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="carburantForm.invalid">
+      {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/carburants">Annuler</button>
+  </form>
+</div>

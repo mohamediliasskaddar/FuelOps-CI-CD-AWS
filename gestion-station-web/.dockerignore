@@ -1,0 +1,9 @@
+# Frontend
+gestion-station-web/node_modules/
+gestion-station-web/dist/
+gestion-station-web/.vscode/
+
+# Global
+.DS_Store
+Thumbs.db
+*.log
