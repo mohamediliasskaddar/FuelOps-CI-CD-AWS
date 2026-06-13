@@ -32,4 +32,4 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t frontend-app ../station_management/gestion-station-web
+          docker build -t frontend-app .
