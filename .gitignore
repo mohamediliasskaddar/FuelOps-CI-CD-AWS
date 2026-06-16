@@ -32,3 +32,16 @@ build/
 ### VS Code ###
 .vscode/
 z-archive/jenkinsfile
+
+### Terraform ###
+infra/terraform/.terraform/
+infra/terraform/terraform.tfstate
+infra/terraform/terraform.tfstate.backup
+
+# Terraform plans
+/infra/terraform/tfplan
+
+
+# Local variable files (may contain secrets)
+/infra/terraform/*.tfvars
+/infra/terraform/*.tfvars.json
