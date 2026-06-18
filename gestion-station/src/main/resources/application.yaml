@@ -4,8 +4,8 @@ spring:
   application:
       name: gestion-station
   datasource:
-#    url: jdbc:postgresql://localhost:5432/station_db
-    url: jdbc:postgresql://postgres:5432/station_db
+#    url: jdbc:postgresql://postgres:5432/station_db
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/station_db}
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

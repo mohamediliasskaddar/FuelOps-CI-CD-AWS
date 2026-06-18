@@ -7,29 +7,40 @@ services:
       POSTGRES_DB: station_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
       - station-net
 
   backend:
-    build: ./gestion-station
+    image: ghcr.io/mohamediliasskaddar/backend-app:latest
     restart: always
-    ports:
-      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/station_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
     depends_on:
       - postgres
     networks:
       - station-net
 
   frontend:
-    build: ./gestion-station-web
+    image: ghcr.io/mohamediliasskaddar/frontend-app:latest
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - station-net
+
+  nginx:
+    image: nginx:latest
     restart: always
     ports:
-      - "4200:80"
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
+      - frontend
       - backend
     networks:
       - station-net

@@ -1,0 +1,44 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Install SSM plugin
+        run: |
+          curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o ssm.deb
+          sudo dpkg -i ssm.deb
+
+      - name: Install Ansible
+        run: pip install ansible
+
+      - name: Setup SSH config
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          echo 'Host i-*' >> ~/.ssh/config
+          echo '  User ubuntu' >> ~/.ssh/config
+          echo '  IdentityFile ~/.ssh/id_rsa' >> ~/.ssh/config
+          echo '  ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters portNumber=%p"' >> ~/.ssh/config
+          echo '  StrictHostKeyChecking no' >> ~/.ssh/config
+          
+      - name: Run Ansible Deploy
+        run: |
+          ansible-playbook -i infra/ansible/inventory.ini infra/ansible/playbooks/deploy.yml \
+          --extra-vars "ghcr_user=${{ secrets.GHCR_USERNAME }} ghcr_token=${{ secrets.GHCR_TOKEN }}"
